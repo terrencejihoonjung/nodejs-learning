@@ -1,29 +1,33 @@
-const PizzaShop = require("./pizza-shop");
-const DrinkMachine = require("./drink-machine");
+// const fs = require("node:fs");
 
-const pizzaShop = new PizzaShop();
-const drinkMachine = new DrinkMachine();
+// console.log("first");
+// // read the contents of a file
+// const fileContents = fs.readFileSync("./file.txt", "utf-8");
+// console.log(fileContents);
 
-pizzaShop.on("order", (size, topping) => {
-  console.log(`"${size} pizza with ${topping} ordered"`);
-  drinkMachine.serveDrink(size);
-});
+// console.log("second");
 
-pizzaShop.order("large", "mushrooms");
-pizzaShop.displayOrderNumber();
-
-// const EventEmitter = require("node:events");
-
-// const emitter = new EventEmitter();
-
-// emitter.on("order-pizza", (size, topping) => {
-//   console.log(`"${size} pizza with ${topping} ordered"`);
-// });
-
-// emitter.on("order-pizza", (size) => {
-//   if (size === "large") {
-//     console.log("Serving complimentary drink");
+// // asynchronous reading
+// // if there is no error, error = null
+// // data is populated with the file contents
+// fs.readFile("./file.txt", "utf-8", (error, data) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log(data);
 //   }
 // });
 
-// emitter.emit("order-pizza", "large", "mushroom");
+// console.log("third");
+
+// // Sync
+// fs.writeFileSync("./greet.txt", "Hello world!");
+
+// // Async
+// fs.writeFile("./greet.txt", " Hello world!", { flag: "a" }, (error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("File written");
+//   }
+// });
