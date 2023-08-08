@@ -7,11 +7,11 @@ const fs = require("node:fs");
   after the request, the callback function builds the response to send back to the client
 */
 const server = http.createServer((req, res) => {
-  // HTTP response header
+  const name = "Terrence";
   res.writeHead(200, { "Content-Type": "text/html" });
-  fs.createReadStream(__dirname + "/index.html").pipe(res);
-  // End the response
-  // res.end(html);
+  let html = fs.readFileSync("./index.html", "utf-8");
+  html = html.replace("{{name}}", name);
+  res.end(html);
 });
 
 // have server listen for requests that takes in a port number => localhost:3000 on browser
