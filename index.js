@@ -1,21 +1,11 @@
-// const crypto = require("node:crypto");
-// process.env.UV_THREADPOOL_SIZE = 9;
+const fs = require("fs");
 
-const https = require("node:https");
-const MAX_CALLS = 12;
+fs.readFile(__filename, () => {
+  console.log("this is readFile 1");
+});
 
-const start = Date.now();
-for (let i = 0; i < MAX_CALLS; i++) {
-  // crypto.pbkdf2("password", "salt", 100000, 512, "sha512", () => {
-  //   console.log(`Hash: ${i + 1}`, Date.now() - start);
-  // });
+process.nextTick(() => console.log("this is process.nextTick 1"));
+Promise.resolve().then(() => console.log("this is Promise.resolve 1"));
+setTimeout(() => console.log("this is setTimeout 1"), 0);
 
-  https
-    .request("https://www.google.com", (res) => {
-      res.on("data", () => {});
-      res.on("end", () => {
-        console.log(`Request: ${i + 1}`, Date.now() - start);
-      });
-    })
-    .end();
-}
+for (let i = 0; i < 2000000; i++) {}
